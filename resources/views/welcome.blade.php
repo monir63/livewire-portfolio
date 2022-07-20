@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -26,7 +26,7 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -131,4 +131,172 @@
         </div>
         @livewireScripts
     </body>
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Esham - Personal Portfolio Template">
+
+    <!-- ========== Page Title ========== -->
+    <title>Esham - Personal Portfoio Template</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="frontend/assets/img/favicon.png" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="frontend/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="frontend/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="frontend/assets/css/magnific-popup.css" rel="stylesheet" />
+    <link href="frontend/assets/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="frontend/assets/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="frontend/assets/css/animate.css" rel="stylesheet" />
+    <link href="frontend/assets/css/bootsnav.css" rel="stylesheet" />
+    <link href="frontend/assets/css/style.css" rel="stylesheet">
+    <link href="frontend/assets/css/responsive.css" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="frontend/assets/js/html5/html5shiv.min.js"></script>
+      <script src="frontend/assets/js/html5/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ========== Google Fonts ========== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+
+    @livewireStyles
+
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div class="se-pre-con"></div>
+    <!-- Preloader Ends -->
+
+    <!-- Header
+    ============================================= -->
+    <header>
+
+        <!-- Start Navigation -->
+
+        {{-- @livewire('frontend.navigation-menu') --}}
+        <livewire:frontend.navigation-menu />
+
+        <!-- End Navigation -->
+
+    </header>
+    <!-- End Header -->
+
+    <!-- Start Banner
+    ============================================= -->
+    <livewire:frontend.banner />
+    <!-- End Banner -->
+    <!-- Start About
+    ============================================= -->
+    <livewire:frontend.about />
+    <!-- End About -->
+
+    <!-- Start Services
+    ============================================= -->
+    <livewire:frontend.service />
+
+    <!-- End Services -->
+
+    <!-- Start Experiance
+    ============================================= -->
+    <livewire:frontend.experiance />
+
+    <!-- End Experiance -->
+
+    <!-- Start Fun Factor
+    ============================================= -->
+    <livewire:frontend.funfactor />
+
+    <!-- End Fun Factor -->
+
+    <!-- Start Portfolio
+    ============================================= -->
+    <livewire:frontend.portfolio />
+
+    <!-- End Portfolio -->
+
+    <!-- Start Testimonials
+    ============================================= -->
+    <livewire:frontend.testimonials />
+
+    <!-- End Testimonials -->
+
+    <!-- Start Blog
+    ============================================= -->
+    <livewire:frontend.blog />
+
+    <!-- End Blog -->
+
+    <!-- Start Contact Form
+    ============================================= -->
+    <livewire:frontend.contact />
+
+    <!-- End Contact Info -->
+
+    <!-- Start Footer
+    ============================================= -->
+    <footer class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 footer-social">
+                    <ul>
+                        <li class="facebook">
+                            <a href="#">Fb</a>
+                        </li>
+                        <li class="twitter">
+                            <a href="#">Tw</a>
+                        </li>
+                        <li class="google">
+                            <a href="#">G+</a>
+                        </li>
+                        <li class="vimeo">
+                            <a href="#">Vm</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12 copyright-text">
+                    <p>&copy; 2018 Esham. Powerd with <i class="fa fa-heart"></i> by <a href="#" target="_blank">ValidTheme</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="frontend/assets/js/jquery-1.12.4.min.js"></script>
+    <script src="frontend/assets/js/bootstrap.min.js"></script>
+    <script src="frontend/assets/js/equal-height.min.js"></script>
+    <script src="frontend/assets/js/jaliswall.js"></script>
+    <script src="frontend/assets/js/jquery.appear.js"></script>
+    <script src="frontend/assets/js/jquery.easing.min.js"></script>
+    <script src="frontend/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="frontend/assets/js/modernizr.custom.13711.js"></script>
+    <script src="frontend/assets/js/owl.carousel.min.js"></script>
+    <script src="frontend/assets/js/particles.min.js"></script>
+    <script src="frontend/assets/js/wow.min.js"></script>
+    <script src="frontend/assets/js/YTPlayer.min.js"></script>
+    <script src="frontend/assets/js/isotope.pkgd.min.js"></script>
+    <script src="frontend/assets/js/count-to.js"></script>
+    <script src="frontend/assets/js/typed.js"></script>
+    <script src="frontend/assets/js/bootsnav.js"></script>
+    <script src="frontend/assets/js/main.js"></script>
+
+    @livewireScripts
+
+</body>
 </html>
