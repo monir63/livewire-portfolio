@@ -1,9 +1,9 @@
 /* ===================================================================
-    
+
     Author          : Valid Theme
     Template Name   : Miniver - HTML5 Blog Template
     Version         : 1.0
-    
+
 * ================================================================= */
 (function($) {
     "use strict";
@@ -45,7 +45,7 @@
             # Typed Text Init Init
         ===============================================*/
         $(".element").typed({
-            strings: ["Professional Web Developer", "WordPress Expert", "Laravel Expert"],
+            strings: ["Professional Web Developer", "Laravel Expert","Graphics Designer", ],
             typeSpeed: 10,
             loop: true,
             backDelay: 2000
@@ -58,7 +58,7 @@
 
 
         /* ==================================================
-            # Particle Background 
+            # Particle Background
          ===============================================*/
         var particleInit = $('#particles-js');
         particleInit.addClass('partIn');
