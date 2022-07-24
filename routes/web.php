@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\BannerController;
+use App\Http\Livewire\Admin\Allbanner;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +20,14 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('backend.dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+// Admin route
+Route::get('/banner',Allbanner::class)->name('admin.banner');
+// Route::get('banner/',[BannerController::class,'banner'])->name('admin.banner');
+Route::post('banner/add/',[BannerController::class,'AddBanner'])->name('admin.addBanner');
+Route::get('/banner-edit/{id}',[BannerController::class,'EditBanner']);
 
 require __DIR__.'/auth.php';
 

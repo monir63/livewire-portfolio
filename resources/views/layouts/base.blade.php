@@ -12,6 +12,7 @@
     <script src="backend/assets/bootstrap.min.js"></script>
     <link href="backend/assets/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="backend/assets/style.css">
+    @livewireStyles
 </head>
 <body>
     <!-- delete alert -->
@@ -202,8 +203,12 @@
                                     </div>
                                     <div class="menu_item">
                                         <ul class="m-0 p-0">
-                                            <li><a href="#"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-2y1ax9" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="LogoutVariantIcon"><path d="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19Z"></path></svg> Logout</a></li>
+                                            <li><a href="{{route('logout')}}" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-2y1ax9" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="LogoutVariantIcon"><path d="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19Z"></path></svg> Logout</a></li>
                                         </ul>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -219,16 +224,17 @@
             <div id="leftMenu" class="col-md-2 active position-relative">
                 <div class="left_menu">
                     <ul>
-                        <li><a href="index.html"> <i class="fa fa-desktop"></i>Home</a></li>
-                        <li><a class="active" href="about.html"> <i class="fa fa-desktop"></i>Client</a></li>
-                        <li><a href="contact.html"> <i class="fa fa-desktop"></i>Contact</a></li>
+                        <li><a href="index.html"> <i class="fa fa-desktop"></i>Dashboard</a></li>
+                        <li><a href="about.html"> <i class="fa fa-desktop"></i>User</a></li>
+                        <li><a class="{{ request()->is("banner*") ? "active" : "" }}" href="{{route('admin.banner')}}"> <i class="fa fa-desktop"></i>Banner</a></li>
+                        <li><a href="contact.html"> <i class="fa fa-desktop"></i>About</a></li>
                         <li><a href="login.html"> <i class="fa fa-desktop"></i>Login</a></li>
                         <li><a href="register.html"> <i class="fa fa-desktop"></i>Register</a></li>
-                        <li onclick="slideToggleItem('slide4')">
-                            <a  class="d-flex align-items-center justify-content-between" href="javascript:void(0)"> <span><i class="fa fa-desktop"></i>Nested</span> <i class="fa fa-angle-down"></i></a>
-                            <ul class="slideItem" id="slide4">
-                                <li><a href="blog-detail.html">Blog Detail</a></li>
-                                <li><a href="blog-list.html">Blog List</a></li>
+                        <li onclick="slideToggleItem('product')">
+                            <a  class="d-flex align-items-center justify-content-between" href="javascript:void(0)"> <span><i class="fa fa-desktop"></i>Product</span> <i class="fa fa-angle-down"></i></a>
+                            <ul class="slideItem" id="product">
+                                <li><a href="blog-detail.html">All Product</a></li>
+                                <li><a href="blog-list.html">Add Product</a></li>
                                 <li><a href="blog-list.html">Blog List</a></li>
                                 <li><a href="blog-list.html">Blog List</a></li>
                             </ul>
@@ -267,288 +273,12 @@
                     </ul>
                 </div>
             </div>
-            <div id="content" class="col-md-12">
-                <div class="table_data">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h4 class="mb-0 ">Client</h4>
-                        <div class="d-flex align-items-center">
-                            <button class="me-1"><i class="fa fa-upload me-1"></i> Import Clients</button>
-                        <button onclick="addClient()"><i class="fa me-1 fa-user-plus"></i> Add Clients</button>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <select class="select" name="" id="">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                        </select>
-                        <div class="search">
-                            <input placeholder="Search" type="text" name="" id="">
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover table-borderless text-center">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Primary contact</th>
-                                    <th>Client groups</th>
-                                    <th>Projects</th>
-                                    <th>Total invoiced</th>
-                                    <th>Payment Received</th>
-                                    <th>Due</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                                <tbody>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>3</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i  onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>4</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>5</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>6</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>8</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>John</td>
-                                        <td>
-                                            <div class="payment_profile">
-                                                <img src="https://rise.fairsketch.com/files/profile_images/_file62ad955b55c00-avatar.png" alt="">
-                                                <p>Smith Dev</p>
-                                            </div>
-                                        </td>
-                                        <td>Gold</td>
-                                        <td>1</td>
-                                        <td>$ 1000</td>
-                                        <td>$ 600</td>
-                                        <td>$ 400</td>
-                                        <td>
-                                            <div class="action">
-                                                <i onclick="toggleModal()" class="fa fa-pencil"></i>
-                                            <i onclick="deleteAlert()" class="fa fa-times"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="9">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="pagination">
-                                                    <a class="disabled" href="#"><i class="fa fa-angle-left"></i></a>
-                                                    <a class="active" href="#">1</a>
-                                                    <a href="#">2</a>
-                                                    <a href="#">3</a>
-                                                    <a href="#">4</a>
-                                                    <a href="#">5</a>
-                                                    <a href="#"><i class="fa fa-angle-right"></i></a>
-                                                </div>
-                                                <div class="total me-3">
-                                                    <p>Total: <span>5</span></p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            @yield('content')
         </div>
     </div>
     <script src="backend/assets/jquery.min.js"></script>
     <script src="backend/assets/app.js"></script>
+    @livewireScripts
+    @yield('footer.js')
 </body>
 </html>
