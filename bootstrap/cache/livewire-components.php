@@ -1,0 +1,15 @@
+<?php return array (
+  'admin.allbanner' => 'App\\Http\\Livewire\\Admin\\Allbanner',
+  'admin.banner' => 'App\\Http\\Livewire\\Admin\\Banner',
+  'frontend.about' => 'App\\Http\\Livewire\\Frontend\\About',
+  'frontend.banner' => 'App\\Http\\Livewire\\Frontend\\Banner',
+  'frontend.blog' => 'App\\Http\\Livewire\\Frontend\\Blog',
+  'frontend.contact' => 'App\\Http\\Livewire\\Frontend\\Contact',
+  'frontend.experiance' => 'App\\Http\\Livewire\\Frontend\\Experiance',
+  'frontend.frontend' => 'App\\Http\\Livewire\\Frontend\\Frontend',
+  'frontend.funfactor' => 'App\\Http\\Livewire\\Frontend\\Funfactor',
+  'frontend.navigation-menu' => 'App\\Http\\Livewire\\Frontend\\NavigationMenu',
+  'frontend.portfolio' => 'App\\Http\\Livewire\\Frontend\\Portfolio',
+  'frontend.service' => 'App\\Http\\Livewire\\Frontend\\Service',
+  'frontend.testimonials' => 'App\\Http\\Livewire\\Frontend\\Testimonials',
+);
