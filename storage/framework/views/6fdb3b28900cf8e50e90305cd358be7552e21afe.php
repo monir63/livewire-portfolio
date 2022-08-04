@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection($slotOrSection); ?>
     <?php echo $manager->initialDehydrate()->toInitialResponse()->effects['html']; ?>
 

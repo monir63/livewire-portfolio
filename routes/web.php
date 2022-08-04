@@ -24,10 +24,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 // Admin route
-Route::get('/banner',Allbanner::class)->name('admin.banner');
-// Route::get('banner/',[BannerController::class,'banner'])->name('admin.banner');
+// banner livewire
+// Route::get('/banner',Allbanner::class)->name('admin.banner');
+Route::get('/banner-edit/{id}',Allbanner::class)->name('admin.editbanner');
+
+// banner ajax
+Route::get('banner/',[BannerController::class,'banner'])->name('admin.banner');
 Route::post('banner/add/',[BannerController::class,'AddBanner'])->name('admin.addBanner');
 Route::get('/banner-edit/{id}',[BannerController::class,'EditBanner']);
+Route::post('/banner-update',[BannerController::class,'Update'])->name('admin.updateBanner');
 
 require __DIR__.'/auth.php';
 

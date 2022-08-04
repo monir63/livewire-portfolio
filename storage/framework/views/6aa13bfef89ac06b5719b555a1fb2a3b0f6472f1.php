@@ -78,7 +78,7 @@
                             </div>
                             <div class="modal-body">
 
-                             <form method="post" action="#">
+                             <form method="post" action="<?php echo e(route('admin.updateBanner', $banners->id)); ?>" enctype="multipart/form-data">
                               <?php echo csrf_field(); ?>
                                   <input type="hidden" id="banner_id" name="banner_id">
 
@@ -105,6 +105,7 @@
                         </div>
                   </div>
                   
+
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
                 <tfoot>
@@ -136,6 +137,7 @@
 <script>
     function getAllData(id){
         var bannerId = id;
+        // alert(bannerId);
         $('#editBanner').modal('show');
         if(bannerId){
             $.ajax({
@@ -143,7 +145,7 @@
                 url: "/banner-edit/" + bannerId ,
 
                 success: function (response) {
-                    console.log(response);
+                    // console.log(response);
                     $("#banner_name").val(response.banners.banner_name);
                     $("#banner").val(response.banners.banner);
                 }

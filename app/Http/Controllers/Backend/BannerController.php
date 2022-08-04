@@ -36,4 +36,36 @@ class BannerController extends Controller
             'banners'=>$banners,
         ]);
     }
+
+    function Update(Request $request){
+        // $data= $request ->all();
+        $id=$request->banner_id;
+        $getbanner = banner::find($id);
+        if($request->banner){
+            //To remove previous file...
+            $destinationPath = public_path('uploads/banner_image/');
+            if(file_exists($destinationPath.$getbanner->banner_image)){
+                if($getbanner->banner_image != ''){
+                    unlink($destinationPath.$getbanner->banner_image);
+                }
+            }
+
+            $file = $request->file('banner');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->move($destinationPath,$fileName);
+            // $data['banner'] = $fileName;
+        }
+
+        $getbanner->banner_name = $request->banner_name;
+        $getbanner->banner = $fileName;
+        $getbanner->Update();
+        return redirect(route('admin.banner'))->with('message','Successfully Banner Updated');
+
+        // if($getbanner->update($data)){
+        //     return redirect(route('admin.banner'))->with('message','Successfully Banner Updated');
+        // }else{
+        //     return redirect()->back()->with('error','Error !! Update Failed');;
+        // }
+
+    }
 }

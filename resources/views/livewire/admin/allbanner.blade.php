@@ -77,7 +77,7 @@
                             </div>
                             <div class="modal-body">
 
-                             <form method="post" action="#">
+                             <form method="post" action="#" enctype="multipart/form-data">
                               @csrf
                                   <input type="hidden" id="bannerId" name="bannerId">
 
@@ -88,7 +88,8 @@
 
                                     <div class="single_input">
                                         <label for="banner">Banner Image</label>
-                                        <input class="form-control" type="file" wire:model="editBannerImage" name="banner" id="banner">
+                                        <img src="{{ Storage::url('/uploads/banner_image/'. $editBannerImage) }}" class="img-fluid">
+                                        <input class="form-control" type="file" wire:model.lazy="editBannerImage" id="banner" name="banner" id="banner">
                                   </div>
                                 </div>
 

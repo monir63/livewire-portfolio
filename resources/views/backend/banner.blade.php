@@ -79,7 +79,7 @@
                             </div>
                             <div class="modal-body">
 
-                             <form method="post" action="#">
+                             <form method="post" action="{{route('admin.updateBanner', $banners->id)}}" enctype="multipart/form-data">
                               @csrf
                                   <input type="hidden" id="banner_id" name="banner_id">
 
@@ -106,6 +106,7 @@
                         </div>
                   </div>
                   {{-- Banner Edit Modal End --}}
+
                     @endforeach
                 </tbody>
                 <tfoot>
@@ -137,6 +138,7 @@
 <script>
     function getAllData(id){
         var bannerId = id;
+        // alert(bannerId);
         $('#editBanner').modal('show');
         if(bannerId){
             $.ajax({
